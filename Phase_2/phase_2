@@ -2,6 +2,8 @@ Phase_2
 
 Phase _2 : Fibonacci series.
 
+output : 0 1 1 2 3 5
+
 Assembly code
    
    0x0000000000400ea9 <+0>:	push   %rbp
@@ -35,3 +37,35 @@ Assembly code
    0x0000000000400f12 <+105>:	pop    %rbx
    0x0000000000400f13 <+106>:	pop    %rbp
    0x0000000000400f14 <+107>:	ret    
+
+//break point
+(gdb) b phase_2
+Breakpoint 1 at 0x400ea9
+(gdb) b explode_bomb
+Breakpoint 2 at 0x40142a
+(gdb) run
+Starting program: /home/dorji/Downloads/Assignment 1/bomb003/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+Border relations with Canada have never been better.
+Phase 1 defused. How about the next one?
+1 2 3 4 5 6 
+
+Breakpoint 1, 0x0000000000400ea9 in phase_2 ()
+(gdb)
+
+//output
+(gdb) d 
+Delete all breakpoints? (y or n) y
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/dorji/Downloads/Assignment 1/bomb003/bomb 
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+Border relations with Canada have never been better.
+Phase 1 defused. How about the next one?
+0 1 1 2 3 5
+That's number 2.  Keep going!
+
+
