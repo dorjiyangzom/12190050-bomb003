@@ -12,10 +12,10 @@ Assembly code
    0x0000000000400ebd <+20>:	xor    %eax,%eax
    0x0000000000400ebf <+22>:	mov    %rsp,%rsi
    0x0000000000400ec2 <+25>:	call   0x40144c <read_six_numbers>   //gets six numbers of user input
-   0x0000000000400ec7 <+30>:	cmpl   $0x0,(%rsp)                   //Compare the frist integer with value store in the register %rsp
-   0x0000000000400ecb <+34>:	jne    0x400ed4 <phase_2+43>         //if the numbers are equal than it jumps to address +48, if it is not equal bomb explodes
-   0x0000000000400ecd <+36>:	cmpl   $0x1,0x4(%rsp)                //compares the second integer with value stored in the register address 
-   0x0000000000400ed2 <+41>:	je     0x400ed9 <phase_2+48>
+   0x0000000000400ec7 <+30>:	cmpl   $0x0,(%rsp)                   //Compare the 0 with first integer stored in the register %rsp
+   0x0000000000400ecb <+34>:	jne    0x400ed4 <phase_2+43>         //if the numbers are equal than it jumps to address +48, if it is not equal bomb explodes. from here we know that first input is 0.
+   0x0000000000400ecd <+36>:	cmpl   $0x1,0x4(%rsp)                //compares 1 with second value stored in the register address 
+   0x0000000000400ed2 <+41>:	je     0x400ed9 <phase_2+48>         //if numbers are equal jump to (+48) else call explode_bomb.
    0x0000000000400ed4 <+43>:	call   0x40142a <explode_bomb>
    0x0000000000400ed9 <+48>:	mov    %rsp,%rbx
    0x0000000000400edc <+51>:	lea    0x10(%rsp),%rbp
