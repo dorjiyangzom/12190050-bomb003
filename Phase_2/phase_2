@@ -1,0 +1,37 @@
+Phase_2
+
+Phase _2 : Fibonacci series.
+
+Assembly code
+   
+   0x0000000000400ea9 <+0>:	push   %rbp
+   0x0000000000400eaa <+1>:	push   %rbx
+   0x0000000000400eab <+2>:	sub    $0x28,%rsp
+   0x0000000000400eaf <+6>:	mov    %fs:0x28,%rax
+   0x0000000000400eb8 <+15>:	mov    %rax,0x18(%rsp)
+   0x0000000000400ebd <+20>:	xor    %eax,%eax
+   0x0000000000400ebf <+22>:	mov    %rsp,%rsi
+   0x0000000000400ec2 <+25>:	call   0x40144c <read_six_numbers>   //gets six numbers of user input
+   0x0000000000400ec7 <+30>:	cmpl   $0x0,(%rsp)                   //Compare the frist integer with value store in the register %rsp
+   0x0000000000400ecb <+34>:	jne    0x400ed4 <phase_2+43>         //if the numbers are equal than it jumps to address +48, if it is not equal bomb explodes
+   0x0000000000400ecd <+36>:	cmpl   $0x1,0x4(%rsp)                //compares the second integer with value stored in the register address 
+   0x0000000000400ed2 <+41>:	je     0x400ed9 <phase_2+48>
+   0x0000000000400ed4 <+43>:	call   0x40142a <explode_bomb>
+   0x0000000000400ed9 <+48>:	mov    %rsp,%rbx
+   0x0000000000400edc <+51>:	lea    0x10(%rsp),%rbp
+   0x0000000000400ee1 <+56>:	mov    0x4(%rbx),%eax
+   0x0000000000400ee4 <+59>:	add    (%rbx),%eax
+   0x0000000000400ee6 <+61>:	cmp    %eax,0x8(%rbx)
+   0x0000000000400ee9 <+64>:	je     0x400ef0 <phase_2+71>
+   0x0000000000400eeb <+66>:	call   0x40142a <explode_bomb>
+   0x0000000000400ef0 <+71>:	add    $0x4,%rbx
+   0x0000000000400ef4 <+75>:	cmp    %rbp,%rbx
+   0x0000000000400ef7 <+78>:	jne    0x400ee1 <phase_2+56>
+   0x0000000000400ef9 <+80>:	mov    0x18(%rsp),%rax
+   0x0000000000400efe <+85>:	xor    %fs:0x28,%rax
+   0x0000000000400f07 <+94>:	je     0x400f0e <phase_2+101>
+   0x0000000000400f09 <+96>:	call   0x400b00 <__stack_chk_fail@plt>
+   0x0000000000400f0e <+101>:	add    $0x28,%rsp
+   0x0000000000400f12 <+105>:	pop    %rbx
+   0x0000000000400f13 <+106>:	pop    %rbp
+   0x0000000000400f14 <+107>:	ret    
