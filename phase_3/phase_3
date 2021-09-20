@@ -44,6 +44,13 @@ Dump of assembler code for function phase_3:
    0x0000000000400fbb <+166>:	ret    
 End of assembler dump.
 
+//mark the breakpoint
+(gdb) break phase_3
+Breakpoint 1 at 0x400f15
+(gdb) break explode_bomb
+Breakpoint 2 at 0x40142a
+(gdb)
+
 (gdb) x/s 0x4025af    //from this line we know that it take two numbers as a input.
 0x4025af:	"%d %d"
 
