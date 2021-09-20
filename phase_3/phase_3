@@ -1,3 +1,11 @@
+Phase 3
+
+Possible inputs
+(0 63) (1 198) (2 789) (3 198) (4 58) (5 624) (6 267) (7 128)
+
+
+Assembly code
+
 Dump of assembler code for function phase_3:
    0x0000000000400f15 <+0>:	sub    $0x18,%rsp
    0x0000000000400f19 <+4>:	mov    %fs:0x28,%rax
@@ -100,5 +108,3 @@ That's number 2.  Keep going!
 0 63
 Halfway there!
 
-ossible inputs
-(0 63) (1 198) (2 789) (3 198) (4 58) (5 624) (6 267) (7 128)
