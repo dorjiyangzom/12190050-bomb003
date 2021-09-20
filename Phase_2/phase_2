@@ -56,6 +56,7 @@ Breakpoint 1, 0x0000000000400ea9 in phase_2 ()
 
 //output
 (gdb) d 
+
 Delete all breakpoints? (y or n) y
 (gdb) run
 The program being debugged has been started already.
