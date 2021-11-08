@@ -84,3 +84,48 @@ rax            0x3                 3
 
 rcx            0xf                 15
 
+thrid iteration
+=> 0x00000000004010b5 <+72>:	add    $0x1,%edx
+rdx            0x3                 3
+
+=> 0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax
+rax            0x7                 7
+
+
+0x00000000004010c1 <+84>:	add    %eax,%ecx 
+//rax            0x7                7
+//rcx            0x16                22
+rcx            0x16                22
+
+fourth iteration
+=> 0x00000000004010b5 <+72>:	add    $0x1,%edx
+rdx            0x4                 4
+
+=> 0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax
+rax            0xb                 11
+
+=> 0x00000000004010c1 <+84>:	add    %eax,%ecx 
+rcx            0x21                33
+
+fith iteration
+=> 0x00000000004010b5 <+72>:	add    $0x1,%edx
+rdx            0x5                 5
+
+=> 0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax
+rax            0xb                 11
+
+=> 0x00000000004010c1 <+84>:	add    %eax,%ecx 
+rax            0xd                 13
+
+ It goes till 15th iteration untill the value of eax is equal to 15
+ rax            0xf                 15
+ 
+ x/d 0x00000000004010d4 <+103>:	cmp    0x4(%rsp),%ecx
+(gdb) x/d 0x7fffffffe554
+0x7fffffffe554:	115
+rcx            0x73                115
+%ecx = 115 
+//since they are equal move the value of 0x4(%rsp) to %rax.
+
+hence our input is correct. which is 5 and 115.
+
