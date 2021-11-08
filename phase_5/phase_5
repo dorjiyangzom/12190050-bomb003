@@ -1,0 +1,86 @@
+phase_5
+
+(gdb) disas phase_5
+Dump of assembler code for function phase_5:
+   0x000000000040106d <+0>:	sub    $0x18,%rsp
+   0x0000000000401071 <+4>:	mov    %fs:0x28,%rax
+   0x000000000040107a <+13>:	mov    %rax,0x8(%rsp)
+   0x000000000040107f <+18>:	xor    %eax,%eax
+   0x0000000000401081 <+20>:	lea    0x4(%rsp),%rcx
+   0x0000000000401086 <+25>:	mov    %rsp,%rdx
+   0x0000000000401089 <+28>:	mov    $0x4025af,%esi     //input format : %d %d (where inputs are integer)
+   0x000000000040108e <+33>:	call   0x400bb0 <__isoc99_sscanf@plt>
+   0x0000000000401093 <+38>:	cmp    $0x1,%eax          //compare 1:eax; eax= 2 
+   0x0000000000401096 <+41>:	jg     0x40109d <phase_5+48>    //if the value of eax greater than 1 jumps to <phase_5+48> else bomb gets explodes
+   0x0000000000401098 <+43>:	call   0x40142a <explode_bomb>
+   0x000000000040109d <+48>:	mov    (%rsp),%eax            //move the first input to eax
+   0x00000000004010a0 <+51>:	and    $0xf,%eax              //perform and operation between 0xf=15 and first value;
+   0x00000000004010a3 <+54>:	mov    %eax,(%rsp)            //mov value of eax(result of and operation) in rsp
+   0x00000000004010a6 <+57>:	cmp    $0xf,%eax               //compare 14:eax 
+   0x00000000004010a9 <+60>:	je     0x4010da <phase_5+109>   //if first input is 15 then bomb explodes else proceed
+   0x00000000004010ab <+62>:	mov    $0x0,%ecx                //move 0 to ecx
+   0x00000000004010b0 <+67>:	mov    $0x0,%edx                //move 0 to edx
+   0x00000000004010b5 <+72>:	add    $0x1,%edx                //edx = edx + 1; (0+1=1)
+   0x00000000004010b8 <+75>:	cltq                             //Convert Long To Quad
+   0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax     //
+   0x00000000004010c1 <+84>:	add    %eax,%ecx                  //ecx = ecx+eax;
+   0x00000000004010c3 <+86>:	cmp    $0xf,%eax                  //compare 0xf : eax;
+   0x00000000004010c6 <+89>:	jne    0x4010b5 <phase_5+72>       // if not equal jump to <phase_5+72>
+   0x00000000004010c8 <+91>:	movl   $0xf,(%rsp)              //move 15 to rsp
+   0x00000000004010cf <+98>:	cmp    $0xf,%edx                //compare 15 : edx
+   0x00000000004010d2 <+101>:	jne    0x4010da <phase_5+109>    // if not equal jump to <phase_5+109>
+   0x00000000004010d4 <+103>:	cmp    0x4(%rsp),%ecx            //compare second value and %ecx
+   0x00000000004010d8 <+107>:	je     0x4010df <phase_5+114>     // if equal jump to <phase_5+114>
+   0x00000000004010da <+109>:	call   0x40142a <explode_bomb>     //call explode bomb
+   0x00000000004010df <+114>:	mov    0x8(%rsp),%rax              // move value 0x8(%rsp) to rax
+   0x00000000004010e4 <+119>:	xor    %fs:0x28,%rax
+   0x00000000004010ed <+128>:	je     0x4010f4 <phase_5+135>
+   0x00000000004010ef <+130>:	call   0x400b00 <__stack_chk_fail@plt>
+   0x00000000004010f4 <+135>:	add    $0x18,%rsp
+   0x00000000004010f8 <+139>:	ret    
+End of assembler dump.
+
+set break point:
+(gdb) b explode_bomb
+Breakpoint 1 at 0x40142a
+(gdb) b phase_5
+Breakpoint 2 at 0x40106d
+
+input format:
+(gdb) x/s 0x4025a
+0x4025af:	"%d %d"   //(5 115)
+
+vaule of eax:
+=> 0x0000000000401093 <+38>:    cmp    $0x1,%eax
+rax            0x2                 2
+
+mov first vaule to eax:
+=> 0x000000000040109d <+48>:	mov    (%rsp),%eax
+rax            0x5                5
+
+and operation
+=> 0x00000000004010a0 <+51>:	and    $0xf,%eax
+rax            0x5                5
+
+
+=> 0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax
+rax            0xc                 12
+
+=> 0x00000000004010c1 <+84>:	add    %eax,%ecx     //eax = 12 ecx = 0;
+rcx            0x0                 0
+rcx            0xc                 12
+
+second iteration
+=> 0x00000000004010b5 <+72>:	add    $0x1,%edx
+rdx            0x2                 2
+
+
+=> 0x00000000004010ba <+77>:	mov    0x402460(,%rax,4),%eax
+rax            0x3                 3
+
+0x00000000004010c1 <+84>:	add    %eax,%ecx    
+//rax            0x3                 3
+//rcx            0xc                 12
+
+rcx            0xf                 15
+
