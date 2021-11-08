@@ -19,7 +19,7 @@ Dump of assembler code for function phase_4:
    0x0000000000401035 <+59>:	mov    $0x0,%esi                  //%esi = 0
    0x000000000040103a <+64>:	mov    (%rsp),%edi               //%edi = first input
    0x000000000040103d <+67>:	call   0x400fbc <func4>          // calls <func4>
-   0x0000000000401042 <+72>:	cmp    $0x2,%eax
+   0x0000000000401042 <+72>:	cmp    $0x2,%eax                  //compare the returned value with 2 if it is not equal bomb explodes
    0x0000000000401045 <+75>:	jne    0x40104e <phase_4+84>
    0x0000000000401047 <+77>:	cmpl   $0x2,0x4(%rsp)
    0x000000000040104c <+82>:	je     0x401053 <phase_4+89>
@@ -55,7 +55,7 @@ Dump of assembler code for function func4:
    0x0000000000400fe9 <+45>:	lea    0x1(%rcx),%esi           //%esi = 1 + %rcx --> %esi = 1 + 7 = 8 WE ARE INCREMENTING rcx each time   
    0x0000000000400fec <+48>:	call   0x400fbc <func4>         //goes back to beginning
    0x0000000000400ff1 <+53>:	lea    0x1(%rax,%rax,1),%eax
-   0x0000000000400ff5 <+57>:	add    $0x8,%rsp          //returns the value of eax
+   0x0000000000400ff5 <+57>:	add    $0x8,%rsp          //returns the value of eax which we want is 2.
    0x0000000000400ff9 <+61>:	ret    
 End of assembler dump.
 
@@ -71,3 +71,18 @@ input format:
 
 (gdb) x/s 0x4025af
 0x4025af:	"%d %d"
+
+We know our number needs to be less than 14 and this problem involves recursion. We also know that the last input needs to be 2. So 
+our format for the answer is "x 2". I just plugged in numbers from 1-14 for the first input and 4 worked well. So answer is 4 2
+
+solution
+(gdb) r ans.txt
+Starting program: /home/dorji/Downloads/Assignment 1/bomb003/bomb ans.txt
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+Phase 1 defused. How about the next one?
+That's number 2.  Keep going!
+Halfway there!
+4 2
+So you got that one.  Try this one.
+
