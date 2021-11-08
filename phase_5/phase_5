@@ -129,3 +129,15 @@ rcx            0x73                115
 
 hence our input is correct. which is 5 and 115.
 
+(gdb) run ans.txt
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/dorji/Downloads/Assignment 1/bomb003/bomb ans.txt
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+Phase 1 defused. How about the next one?
+That's number 2.  Keep going!
+Halfway there!
+So you got that one.  Try this one.
+5 115
+Good work!  On to the next...
